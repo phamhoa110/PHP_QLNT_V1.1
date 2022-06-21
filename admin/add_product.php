@@ -70,18 +70,21 @@
             if(isset($_POST["trongluong"])) { $trongluong = $_POST['trongluong']; }
 
             if(isset($_POST["ncc"])) { $ncc = $_POST['ncc']; }
-       
+            
             if(isset($_POST["chitiet"])) { $chitiet = $_POST['chitiet']; }
-            if($_POST['tensanpham']=='' || $_POST['anh']=='' || $_POST['madanhmuc']=='' || $_POST['soluong']=='' || $_POST['dongia']=='' || $_POST['chatlieu']=='' || $_POST['mausac']=='' || $_POST['kichthuoc']=='' || $_POST['trongluong']=='' ){
-            echo '<script>alert("Vui lòng nhập đầy đủ thông tin")</script>';
-            echo "<script>window.location.href='add_product.php';</script>";
-            die();
-          }
+            if(isset($_POST["trangthai"])) { $trangthai = $_POST['trangthai']; }
+
+
+          //   if($_POST['tensanpham']=='' || $_POST['anh']=='' || $_POST['madanhmuc']=='' || $_POST['soluong']=='' || $_POST['dongia']=='' || $_POST['chatlieu']=='' || $_POST['mausac']=='' || $_POST['kichthuoc']=='' || $_POST['trongluong']=='' ){
+          //   echo '<script>alert("Vui lòng nhập đầy đủ thông tin")</script>';
+          //   echo "<script>window.location.href='add_product.php';</script>";
+          //   die();
+          // }
             //Code xử lý, insert dữ liệu vào table
             $anh = $_FILES['anh']['name'];
             $target = "../user/images/books/" . basename($anh);
-            $sql = "INSERT INTO sanpham (MaDM, TenSP, Anh, SoLuong, DonGia, ChatLieu, MaMau ,KichThuoc, MaNCC, TrongLuong,ChiTiet) 
-            VALUES ('$maDM', '$tenSP','$anh', '$soluong','$dongia','$chatlieu','$mausac', '$kichthuoc', '$ncc', '$trongluong', '$chitiet')";
+            $sql = "INSERT INTO sanpham (MaDM, TenSP, Anh, SoLuong, DonGia, ChatLieu, MaMau ,KichThuoc, MaNCC, TrongLuong,ChiTiet, TrangThai) 
+            VALUES ('$maDM', '$tenSP','$anh', '$soluong','$dongia','$chatlieu','$mausac', '$kichthuoc', '$ncc', '$trongluong', '$chitiet', '$trangthai')";
               
             if (mysqli_query($conn, $sql)) {
               move_uploaded_file($_FILES['anh']['tmp_name'], $target);
@@ -177,7 +180,12 @@
           <label class="mt-3">Chi tiết</label>
           <input type="text" class="form-control" name="chitiet">
 
-          
+          <label class="mt-3">Trạng thái</label>
+          <select name="trangthai" class="form-control">
+            <option value="unselect">---------------Chọn trạng thái -----------------</option>
+            <option value="0">0</option>
+            <option value="1" selected>1</option>
+          </select>
 
           <input type="submit" class="btn btn-small btn-primary mt-3" name="btnSubmit" value="Thêm mới">
         </form>

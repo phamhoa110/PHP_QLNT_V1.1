@@ -87,7 +87,7 @@
           </select>
 
           <label class="mt-3">Số lượng</label>
-          <input type="number" class="form-control" name="soluong" min="1" value="<?=$row['SoLuong']?>">
+          <input type="number" class="form-control" name="soluong" min="0" value="<?=$row['SoLuong']?>">
 
           <label class="mt-3">Đơn giá</label>
           <input class="form-control" name="dongia" value="<?=$row['DonGia']?>">
@@ -127,7 +127,7 @@
             ?>  
               <option <?php
                 if($row['MaNCC'] = $rowNha['MaNCC']){
-                  echo 'selected';
+                  echo 'selected="selected"';
                 }
               ?> value="<?=$rowNha['MaNCC']?>"><?=$rowNha['TenNCC']?></option>
                <?php } ?> 
@@ -137,7 +137,12 @@
           <label class="mt-3">Chi tiết</label>
           <input type="text" class="form-control" name="chitiet" value="<?=$row['ChiTiet']?>">
 
-        
+          <label class="mt-3">Trạng thái</label>
+          <select name="trangthai" class="form-control" >
+            <option value="<?= $row['TrangThai']?>" selected="selected"><?= $row['TrangThai']?></option>
+            <option value="0">0</option>
+            <option value="1" >1</option>
+          </select>
 
              <input class="mt-3" type="submit" value="Sửa" name="update_SP">
 
@@ -187,6 +192,10 @@
               $chitiet = $_POST['chitiet'];
             }
 
+            if(isset($_POST['trangthai'])){
+              $trangthai = $_POST['trangthai'];
+            }
+
             if(isset($_FILES['anh'])){
              $anh = $_POST['anh'];
           }
@@ -197,7 +206,7 @@
 
            
 				  $sql = "UPDATE sanpham SET TenSP='$tensp', MaDM='$madm', Anh ='$anh', SoLuong = '$soluong', DonGia = '$dongia', ChatLieu = '$chatlieu', MaMau = '$mausac',
-          KichThuoc = '$kichthuoc', MaNCC = '$ncc', TrongLuong = '$trongluong', ChiTiet = '$chitiet' WHERE MaSP='$id'";
+          KichThuoc = '$kichthuoc', MaNCC = '$ncc', TrongLuong = '$trongluong', ChiTiet = '$chitiet', TrangThai = '$trangthai' WHERE MaSP='$id'";
 						if (mysqli_query($conn, $sql)) {
               
               move_uploaded_file($_FILES['anh']['tmp_name'], $target);
