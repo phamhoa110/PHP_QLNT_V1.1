@@ -109,6 +109,7 @@
                 <th>Nhà cung cấp</th>
                 <th>Trọng lượng</th>
                 <th>Chi tiết</th>
+                <th>Trạng thái</th>
                 <th></th>
               </tr>
             </thead>
@@ -186,6 +187,14 @@
 
 
                   <td><?php echo $row['ChiTiet']; ?></td>
+                  <td>
+                    <?php
+                      if ($row['TrangThai']==0)
+                        echo "Tạm ngưng bán!";
+                      else 
+                        echo "Đang bán!";
+                    ?>
+                  </td>
 
 
                   <td width="14%;"><a href="edit_product.php?id=<?php echo $row['MaSP']; ?>" class="btn btn-primary btn-sml">Sửa</a>

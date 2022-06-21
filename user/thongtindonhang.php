@@ -140,7 +140,7 @@ include("header1.php");
                             <input type="text" name="sdt" required value="<?=$row_ttnh['phonenumber']?>">  
                             <br>   
                             <button class="borrow" type="submit" name="vanchuyen">Thanh toán</button>
-                             <a href="giohang.php" onclick="return confirm('Bạn có chắc chắn muốn hủy không?');"> <input type="submit" name="borrow" class="borrow" value="Hủy"></a>
+                             <a href="giohang.php" onclick="return confirm('Bạn có chắc chắn muốn hủy không?');"> Hủy</a>
                 
                         </form>
 
